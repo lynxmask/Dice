@@ -1,0 +1,85 @@
+﻿
+<!-- The DICE buttosn are created -->
+<button id ="d20"> Roll a d20</button>
+<button id ="d12"> Roll a d12</button>
+<button id ="d10"> Roll a d10</button>
+<button id ="d8"> Roll a d8</button>
+<button id ="d6"> Roll a d6</button>
+<button id ="d4"> Roll a d4</button>
+
+<script>
+alert("Welcome to the super advanced dice roller!");
+
+//Generatin random number
+var rand = Math.ceil(Math.random()*20);
+var twenty = rand
+var twelve = rand
+var ten = 10
+var eight = 8
+var six = 6
+var four = 4
+//Added 1 lower than the maximum amount and added 1 to prevent the dice from rolling a 0
+
+console.log(rand)
+
+console.log(twenty)
+
+
+asldkhjasdf
+
+//All the dice
+	//d20
+	var bTwenty = document.getElementById("d20");
+		bTwenty.addEventListener("click",roll20);
+	//d12
+	var Btwelve = document.getElementById("d12");
+		Btwelve.addEventListener("click",roll12);
+	//d10
+	var bTen = document.getElementById("d10");
+		bTen.addEventListener("click",roll10);
+	//d8
+	var bEight = document.getElementById("d8");
+		bEight.addEventListener("click",roll8);
+	//d6
+	var bSix = document.getElementById("d6");
+		bSix.addEventListener("click",roll6);
+	//d4
+	var bFour = document.getElementById("d4");
+	bFour.addEventListener("click",roll4);
+
+
+//the functions for dice rolling
+//They wont re-randomize themselves
+//d20
+	function roll20(){
+		var rTwenty = Math.ceil(Math.random()*20)
+		alert(rTwenty);
+	}
+	//d12
+	function roll12(){
+		var rTwelve = Math.ceil(Math.random()*12)
+		alert(rTwelve);
+	}
+	//d10
+	function roll10(){
+		var rTen = Math.ceil(Math.random()*10)
+		alert(rTen);
+	}
+	//d8
+	function roll8(){
+		var rEight = Math.ceil(Math.random()*8)
+		alert(rEight);
+	}
+	//d6
+	function roll6(){
+		var rSix = Math.ceil(Math.random() * 6)
+		alert(rSix);
+	}
+	//d4
+	function roll4(){
+		var rFour = Math.ceil(Math.random()*4)
+		alert(rFour);
+}
+
+
+</script>
