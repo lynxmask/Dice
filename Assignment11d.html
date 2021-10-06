@@ -1,0 +1,207 @@
+﻿<!--Added byttons for choosing amount of dice to roll. am1 for amount 1 and so on -->
+
+<button id ="am1"> 1 Dice </button>
+<button id ="am2"> 2 Dice </button>
+<button id ="am3"> 3 Dice </button>
+<button id ="am4"> 4 Dice </button>
+<button id ="am5"> 5 Dice </button>
+<button id ="am6"> 6 Dice </button>
+<br>
+<!-- The DICE buttosn are created -->
+<button id ="d20"> Choose d20(s)</button>
+<button id ="d12"> Choose d12(s)</button>
+<button id ="d10"> Choose d10(s)</button>
+<button id ="d8"> Choose d8(s)</button>
+<button id ="d6"> Choose d6(s)</button>
+<button id ="d4"> Choose d4(s)</button>
+<br>
+<button id = "count"> What am I rolling?</button>
+<br>
+<button id="ROLL">ROLL THE DICE!!!</button>
+
+
+<script>
+alert("Welcome to the super advanced dice roller!\nAs default one d6 is will be rolled.");
+
+//Settings depending on how many dice you want to roll.
+	//I cant name it 1Dice, why? it says "identifier starts immediately after numeric literal"
+	var oneDice = document.getElementById("am1");
+		oneDice.addEventListener("click",add1)
+
+	var twoDice = document.getElementById("am2");
+		twoDice.addEventListener("click",add2);
+
+	var threeDice = document.getElementById("am3");
+		threeDice.addEventListener("click",add3);
+
+	var fourDice = document.getElementById("am4");
+		fourDice.addEventListener("click",add4);
+
+	var fiveDice = document.getElementById("am5");
+		fiveDice.addEventListener("click",add5);
+
+	var sixDice = document.getElementById("am6");
+		sixDice.addEventListener("click",add6);
+//All the dice buttons, connecting the ID to the functions.
+	//d20
+	var bTwenty = document.getElementById("d20");
+		bTwenty.addEventListener("click",Max20);
+	//d12
+	var Btwelve = document.getElementById("d12");
+		Btwelve.addEventListener("click",Max12);
+	//d10
+	var bTen = document.getElementById("d10");
+		bTen.addEventListener("click",Max10);
+	//d8
+	var bEight = document.getElementById("d8");
+		bEight.addEventListener("click",Max8);
+	//d6
+	var bSix = document.getElementById("d6");
+		bSix.addEventListener("click",Max6);
+	//d4
+	var bFour = document.getElementById("d4");
+	bFour.addEventListener("click",Max4);
+
+var Die1 = 0
+var Die2 = 0
+var Die3 = 0
+var Die4 = 0
+var Die5 = 0
+var Die6 = 0
+
+//Creating an array to display the rolls you've made. Up to 6 Dice. Starting at 0 to give message to choose amount of 
+var DICE = [Die1,Die2,Die3,Die4,Die5,Die6];
+//The log to announce what each dice rolled.
+var logDice = DICE[0];
+//Adding variable so that I can change the cieling for the number randomizer. Default at 6 
+var Max = 6
+//Amount of dice rolled. Defaulting at 1
+var amount = 1
+
+
+
+//To show the player what they're rolling
+var DiceCount = document.getElementById("count");
+	DiceCount.addEventListener("click",fCount);
+	function fCount(){
+		if(amount == 1){
+			alert("You're rolling a die with "+Max+" sides!");
+		}
+		else(alert("You're rolling "+ amount+" dice "+Max+" with sides each!"));
+	}
+
+
+
+//The functions for adding AMOUNT of dice.
+//At the moment I cant make console.log(DICE[0]) show the updated numbers
+	function add1(){
+		amount = 1
+	}
+
+	function add2(){
+		amount = 2
+	}
+
+	function add3(){
+		amount = 3
+	}
+	function add4(){
+		amount = 4
+	}
+
+	function add5(){
+		amount = 5
+	}
+
+	function add6(){
+		amount = 6
+	}
+
+//setting the MAX value, deciding what kind of DIE to roll
+	//d20
+	function Max20(){
+		Max = 20
+	}
+	//d12
+	function Max12(){
+		Max = 12
+	}
+	//d10
+	function Max10(){
+		Max = 10
+	}
+	//d8
+	function Max8(){
+		Max = 8
+	}
+	//d6
+	function Max6(){
+		Max = 6
+	}
+	//d4
+	function Max4(){
+		Max = 4
+	}	
+
+
+
+
+//Button to roll the DICE	
+	var result = document.getElementById("ROLL");
+		result.addEventListener("click",rollDice);
+
+function rollDice(){
+	//Die Rolls
+	var Die1 = Math.ceil(Math.random()*Max)
+	
+	var Die2 = Math.ceil(Math.random()*Max)
+	
+	var Die3 = Math.ceil(Math.random()*Max)
+	
+	var Die4 = Math.ceil(Math.random()*Max)
+	
+	var Die5 = Math.ceil(Math.random()*Max)
+	
+	var Die6 = Math.ceil(Math.random()*Max)
+
+	var total = 1
+	
+	if (amount == 1){
+		logDice = Die1
+		total = Die1
+	} 
+	else if(amount == 2){
+		logDice = Die1+" & "+Die2
+		total = Die1+Die2
+	}
+	else if(amount == 3){
+		logDice = Die1+","+Die2+" & "+Die3
+		total = Die1+Die2+Die3
+	}
+	else if(amount == 4){
+		logDice = Die1+","+Die2+","+Die3+" & "+Die4
+		total = Die1+Die2+Die3+Die4
+	}
+	else if(amount == 5){
+		logDice = Die1+","+Die2+","+Die3+","+Die4+" & "+Die5
+		total = Die1+Die2+Die3+Die4+Die5
+	}
+	else if(amount ==6){
+		logDice = Die1+","+Die2+","+Die3+","+Die4+","+Die5+" & "+Die6
+		total = Die1+Die2+Die3+Die4+Die5+Die6
+	}
+	//tell the result
+	if (amount == 1){
+		alert("You rolled a d"+Max+" and got a "+Die1+"!");
+	}
+	else (alert("You rolled "+amount+" d"+ Max+" dice and rolled "+logDice+" for a total of "+total+"!"))
+	console.log(logDice)
+	console.log(total)
+}
+
+
+
+
+
+
+</script>
