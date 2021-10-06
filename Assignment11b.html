@@ -1,85 +1,193 @@
-﻿
+﻿<!--Added byttons for choosing amount of dice to roll. am1 for amount 1 and so on -->
+<button id ="am1"> 1 Dice </button>
+<button id ="am2"> 2 Dice </button>
+<button id ="am3"> 3 Dice </button>
+<button id ="am4"> 4 Dice </button>
+<button id ="am5"> 5 Dice </button>
+<button id ="am6"> 6 Dice </button>
+<br>
 <!-- The DICE buttosn are created -->
-<button id ="d20"> Roll a d20</button>
-<button id ="d12"> Roll a d12</button>
-<button id ="d10"> Roll a d10</button>
-<button id ="d8"> Roll a d8</button>
-<button id ="d6"> Roll a d6</button>
-<button id ="d4"> Roll a d4</button>
+<button id ="d20"> Choose d20(s)</button>
+<button id ="d12"> Choose d12(s)</button>
+<button id ="d10"> Choose d10(s)</button>
+<button id ="d8"> Choose d8(s)</button>
+<button id ="d6"> Choose d6(s)</button>
+<button id ="d4"> Choose d4(s)</button>
+<br>
+<button id = "count"> What am I rolling?</button>
+<br>
+<button id="ROLL">ROLL THE DICE!!!</button>
+
 
 <script>
-alert("Welcome to the super advanced dice roller!");
+alert("Welcome to the super advanced dice roller!\nAs default one d6 is will be rolled.");
 
-//Generatin random number
-var rand = Math.ceil(Math.random()*20);
-var twenty = rand
-var twelve = rand
-var ten = 10
-var eight = 8
-var six = 6
-var four = 4
-//Added 1 lower than the maximum amount and added 1 to prevent the dice from rolling a 0
+//Settings depending on how many dice you want to roll.
+	//I cant name it 1Dice, why? it sais "identifier starts immediately after numeric literal"
+	var oneDice = document.getElementById("am1");
+		oneDice.addEventListener("click",add1)
 
-console.log(rand)
+	var twoDice = document.getElementById("am2");
+		twoDice.addEventListener("click",add2);
 
-console.log(twenty)
+	var threeDice = document.getElementById("am3");
+		threeDice.addEventListener("click",add3);
+
+	var fourDice = document.getElementById("am4");
+		fourDice.addEventListener("click",add4);
+
+	var fiveDice = document.getElementById("am5");
+		fiveDice.addEventListener("click",add5);
+
+	var sixDice = document.getElementById("am6");
+		sixDice.addEventListener("click",add6);
 
 
-asldkhjasdf
 
-//All the dice
+//Creating an array to display the rolls you've made. Up to 6 Dice. Starting at 0 to give message to choose amount of 
+var DICE = [0,0,0,0,0,0];
+//The log to announce what each dice rolled.
+var logDice = DICE[0];
+//Adding variable so that I can change the cieling for the number randomizer. Default at 6 
+var Max = 6
+//Amount of dice rolled. Defaulting at 1
+var amount = 1
+var rolls = amount
+//An array of the dice rolled.
+var dTotal = DICE[0]+DICE[1]+DICE[2]+DICE[3]+DICE[4]+DICE[5]
+//Random Roller
+function randRoll(){
+	Math.ceil(Math.random()*Max)
+}
+
+//To show the player what they're rolling
+var DiceCount = document.getElementById("count");
+	DiceCount.addEventListener("click",fCount);
+	function fCount(){
+		if(amount == 1){
+			alert("You're rolling "+ amount+" die with "+Max+" sides!");
+		}
+		else(alert("You're rolling "+ amount+" dice "+Max+" with sides each!"));
+	}
+
+
+//The functions for adding AMOUNT of dice.
+	
+	function add1(){
+		amount = 1
+		logDice = DICE[0]
+	}
+
+	function add2(){
+		amount = 2
+		logDice = DICE[0]+"," + DICE[1]
+	}
+
+	function add3(){
+		amount = 3
+		logDice = DICE[0]+","+DICE[1]+","+DICE[2]
+	}
+	function add4(){
+		amount = 4
+		logDice = DICE[0]+","+DICE[1]+","+DICE[2]+","+DICE[3]
+	}
+
+	function add5(){
+		amount = 5
+		logDice = DICE[0]+","+DICE[1]+","+DICE[2]+","+DICE[3]+","+DICE[4]
+	}
+
+	function add6(){
+		amount = 6
+		logDice = DICE[0]+","+DICE[1]+","+DICE[2]+","+DICE[3]+","+DICE[4]+","+DICE[5]
+	}
+
+//All the dice buttons, connecting the ID to the functions.
 	//d20
 	var bTwenty = document.getElementById("d20");
-		bTwenty.addEventListener("click",roll20);
+		bTwenty.addEventListener("click",Max20);
 	//d12
 	var Btwelve = document.getElementById("d12");
-		Btwelve.addEventListener("click",roll12);
+		Btwelve.addEventListener("click",Max12);
 	//d10
 	var bTen = document.getElementById("d10");
-		bTen.addEventListener("click",roll10);
+		bTen.addEventListener("click",Max10);
 	//d8
 	var bEight = document.getElementById("d8");
-		bEight.addEventListener("click",roll8);
+		bEight.addEventListener("click",Max8);
 	//d6
 	var bSix = document.getElementById("d6");
-		bSix.addEventListener("click",roll6);
+		bSix.addEventListener("click",Max6);
 	//d4
 	var bFour = document.getElementById("d4");
-	bFour.addEventListener("click",roll4);
+	bFour.addEventListener("click",Max4);
 
 
-//the functions for dice rolling
-//They wont re-randomize themselves
-//d20
-	function roll20(){
-		var rTwenty = Math.ceil(Math.random()*20)
-		alert(rTwenty);
+//Button to roll the DICE	
+	var result = document.getElementById("ROLL");
+		result.addEventListener("click",rollDice);
+
+function rollDice(){
+	//Loop for rolling dice.
+	for(rolls ;rolls > 0;rolls--){
+		var rNumber = Math.ceil(Math.random()*Max);
+
+		if(rolls == 6){
+			DICE[5] = Math.ceil(Math.random()*Max)
+		}
+		else if(rolls == 5){
+			DICE[4] = Math.ceil(Math.random()*Max)
+		}
+		else if(rolls == 4){
+			DICE[3] = Math.ceil(Math.random()*Max)
+		}
+		else if(rolls == 3){
+			DICE[2]= Math.ceil(Math.random()*Max)
+		}
+		else if(rolls == 2){
+			DICE[1] = Math.ceil(Math.random()*Max)
+		}
+		else if (rolls == 1){
+			DICE[0] = Math.ceil(Math.random()*Max)
+		}
+		else if(DICE[0]== 0){
+			console.log("oops")
+		}
+	}
+	console.log(logDice)
+	//UPdate rolls to be equal to the amount dice chose, so that the user wont have to re-choose amount of dice
+	rolls = amount
+	
+}
+
+
+//setting the MAX value, deciding what kind of DIE to roll
+	//d20
+	function Max20(){
+		Max = 20
 	}
 	//d12
-	function roll12(){
-		var rTwelve = Math.ceil(Math.random()*12)
-		alert(rTwelve);
+	function Max12(){
+		Max = 12
 	}
 	//d10
-	function roll10(){
-		var rTen = Math.ceil(Math.random()*10)
-		alert(rTen);
+	function Max10(){
+		Max = 10
 	}
 	//d8
-	function roll8(){
-		var rEight = Math.ceil(Math.random()*8)
-		alert(rEight);
+	function Max8(){
+		Max = 8
 	}
 	//d6
-	function roll6(){
-		var rSix = Math.ceil(Math.random() * 6)
-		alert(rSix);
+	function Max6(){
+		Max = 6
 	}
 	//d4
-	function roll4(){
-		var rFour = Math.ceil(Math.random()*4)
-		alert(rFour);
-}
+	function Max4(){
+		Max = 4
+	}	
+
+
 
 
 </script>
